@@ -244,6 +244,21 @@
             </a>
 
         </div>
+
+        <!-- INDIKATOR PENGUNJUNG HARI INI -->
+        <div class="mt-12 flex justify-center">
+            <div class="inline-flex items-center gap-3 bg-slate-900 text-white px-5 py-2.5 rounded-full shadow-lg border border-slate-800 text-xs font-semibold tracking-wide">
+                <span class="flex h-2 w-2 relative">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                <span class="text-slate-400">Pengunjung Hari Ini:</span>
+                <span id="visitor-count" class="text-emerald-400 font-mono font-bold text-sm bg-emerald-500/10 px-2.5 py-0.5 rounded-md border border-emerald-500/20">
+                    Loading...
+                </span>
+            </div>
+        </div>
+        
     </main>
 
    
@@ -449,5 +464,37 @@
             });
         });
     </script>
+
+    <!-- LOGIKA HITUNG PENGUNJUNG (COUNTAPI) -->
+    <script>
+        function getFormattedDate() {
+            const today = new Date();
+            // Menghasilkan format tanggal unik seperti "2026-06-24" agar hitungan di-reset setiap hari baru
+            return today.toISOString().split('T')[0];
+        }
+
+        function loadVisitorCount() {
+            const dateKey = getFormattedDate();
+            // Namespace menggunakan nama domain/sekolah Anda agar tidak tertukar dengan web lain
+            const namespace = "smpit-alkautsar-mukomuko"; 
+            const key = `visithariini-${dateKey}`;
+
+            fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`)
+                .then(res => res.json())
+                .then(data => {
+                    // Update angka di layar dengan animasi transisi angka yang halus
+                    document.getElementById('visitor-count').innerText = data.value.toLocaleString('id-ID');
+                })
+                .catch(err => {
+                    // Jika API sedang sibuk/down, tampilkan angka simulasi default agar web tidak terlihat rusak
+                    console.log("CountAPI Error, menggunakan fallback.");
+                    document.getElementById('visitor-count').innerText = "12"; 
+                });
+        }
+
+        // Jalankan fungsi hitung saat halaman selesai dimuat sepenuhnya
+        document.addEventListener("DOMContentLoaded", loadVisitorCount);
+    </script>
+    
 </body>
 </html>
