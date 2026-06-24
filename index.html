@@ -23,24 +23,30 @@
         }
     </script>
     <style>
-        /* CSS UNTUK BACKGROUND MOTIF HEXAGON PREMIUM & SEAMLESS */
+        /* CSS PREMIUM UNTUK MENGATUR OPACITY SVG EKSTERNAL */
         .bg-cream-abstract {
-            background-color: #F0FFFF; 
+            background-color: #F0FFFF; /* Warna dasar tetap solid */
+            position: relative;
+            z-index: 0;
+        }
+
+        /* Elemen tiruan khusus untuk menampung motif kontur */
+        .bg-cream-abstract::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             background-image: url("bg-pattern.svg");
             background-repeat: repeat;
-            background-size: 1200px; /* Angka 80px ini bisa Anda besarkan/kecilkan sesuka hati untuk mengatur skala motifnya */
-        }
-        
-        /* Efek 3D Kustom untuk Elemen di Atas Background Terang */
-        .box-3d {
-            border-bottom: 4px solid #f9a825;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .box-3d:hover {
-            transform: translateY(-5px);
-            border-bottom-width: 6px;
-            border-bottom-color: #98fb98;
-            box-shadow: 0 15px 25px -5px rgba(249, 168, 37, 0.15);
+            background-size: 1200px; /* Sesuaikan skala kerapatan garis di sini */
+            
+            /* KUNCI OPACITY: Ubah angka ini (0.05 = 5% kepekatan). Sangat samar dan elegan */
+            opacity: 0.05; 
+            
+            z-index: -1;
+            pointer-events: none;
         }
     </style>
 </head>
