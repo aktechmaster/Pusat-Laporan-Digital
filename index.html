@@ -74,16 +74,7 @@
                     <a href="#rapor" class="text-slate-600 hover:text-orangeCustom transition-colors duration-200">Rapor</a>
                     <a href="#arsip" class="text-slate-600 hover:text-orangeCustom transition-colors duration-200">Arsip</a>
                     <a href="#lainnya" class="text-slate-600 hover:text-orangeCustom transition-colors duration-200">Lainnya</a>
-                    
-                    <div class="flex items-center gap-2 bg-slate-900 text-white px-3 py-1.5 rounded-full border border-slate-800 text-[11px] font-bold tracking-wide shadow-sm">
-                        <span class="flex h-1.5 w-1.5 relative">
-                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                            <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
-                        </span>
-                        <span id="visitor-count-desktop" class="text-emerald-400 font-mono">Loading...</span>
-                    </div>
-                </div>
-
+                                
                 <div class="md:hidden flex items-center">
                     <button id="hamburger-btn" class="text-slate-600 hover:text-orangeCustom focus:outline-none">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -113,6 +104,21 @@
             <a href="#lainnya" class="block text-slate-700 hover:text-orangeCustom px-3 py-2 rounded-xl transition-colors">Lainnya</a>
         </div>
     </nav>
+
+    <!-- WIDGET PENGUNJUNG MELAYANG (ALWAYS VISIBLE & JELAS) -->
+    <div class="fixed bottom-5 right-5 z-50 flex items-center gap-2 bg-slate-900/95 backdrop-blur-sm text-white px-4 py-2 rounded-full border border-slate-700 shadow-xl pointer-events-auto transition-transform hover:scale-105 duration-200">
+        <!-- Titik Berdenyut Live -->
+        <span class="flex h-2 w-2 relative">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+        </span>
+        <!-- Teks Keterangan yang Jelas -->
+        <span class="text-[11px] font-bold tracking-wide uppercase text-slate-300">Pengunjung Hari Ini:</span>
+        <!-- Angka Counter -->
+        <span id="visitor-count" class="text-emerald-400 font-mono font-bold text-xs bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
+            Loading...
+        </span>
+    </div>
 
     <!-- SECTION 1: HOME (HERO BANNER) -->
     <header id="home" class="relative overflow-hidden pt-12 pb-16 px-4 text-center max-w-4xl mx-auto">
@@ -482,17 +488,14 @@
             fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`)
                 .then(res => res.json())
                 .then(data => {
-                    const formattedValue = data.value.toLocaleString('id-ID');
-                    // Suntikkan ke versi desktop dan mobile sekaligus
-                    if(document.getElementById('visitor-count-desktop')) document.getElementById('visitor-count-desktop').innerText = formattedValue;
-                    if(document.getElementById('visitor-count-mobile')) document.getElementById('visitor-count-mobile').innerText = formattedValue;
+                    document.getElementById('visitor-count').innerText = data.value.toLocaleString('id-ID');
                 })
                 .catch(err => {
                     console.log("CountAPI Error, menggunakan fallback.");
-                    if(document.getElementById('visitor-count-desktop')) document.getElementById('visitor-count-desktop').innerText = "12";
-                    if(document.getElementById('visitor-count-mobile')) document.getElementById('visitor-count-mobile').innerText = "12";
+                    document.getElementById('visitor-count').innerText = "12"; 
                 });
         }
+        document.addEventListener("DOMContentLoaded", loadVisitorCount);
 
         // Jalankan fungsi hitung saat halaman selesai dimuat sepenuhnya
         document.addEventListener("DOMContentLoaded", loadVisitorCount);
