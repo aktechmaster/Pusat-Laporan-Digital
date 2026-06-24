@@ -23,7 +23,7 @@
         }
     </script>
     <style>
-        /* CSS PREMIUM UNTUK MENGATUR OPACITY SVG EKSTERNAL */
+        /* CSS PREMIUM UNTUK BACKGROUND DENGAN OPACITY RENDAH */
         .bg-cream-abstract {
             background-color: #F0FFFF;
             position: relative;
@@ -41,12 +41,19 @@
             background-repeat: repeat;
             background-size: 500px;
             opacity: 0.05;
-            
-            /* Ganti bagian ini agar z-indexnya amblas ke paling bawah */
             z-index: -10; 
-            
-            /* KUNCI UTAMA: Agar kursor menembus lapisan background dan langsung menyentuh kotak */
             pointer-events: none; 
+        }
+
+        /* 🛠️ KUNCI PERBAIKAN: ANIMASI GERAKAN KOTAK 3D SAAT DILEWATI KURSOR */
+        .box-3d {
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .box-3d:hover {
+            transform: translateY(-6px); /* Kotak mengangkat ke atas */
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1); /* Bayangan menebal nyata */
+            border-color: #f9a825; /* Garis tepi berubah mengikuti warna orangeCustom */
         }
     </style>
 </head>
