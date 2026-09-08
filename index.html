@@ -550,26 +550,32 @@
         }
     </script>
 
-    <section id="arsip" class="max-w-7xl mx-auto px-4 py-20 border-t border-slate-300/40 text-center scroll-mt-20">
+    <section id="arsip" class="max-w-7xl mx-auto px-4 py-20 border-t border-slate-300/40 text-left scroll-mt-20">
     <h2 class="text-xl font-bold text-slate-900 mb-6">Arsip</h2>
     
-    <div class="flex justify-center">
-        <a href="URL_FOLDER_GOOGLE_DRIVE_ANDA" 
+    <!-- Grid agar ukuran dan posisi rata kiri sama persis dengan section atas -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <a href="https://drive.google.com/drive/folders/1F0KPsmnJ1pLpBc5zXzfVY1YudLpEjpRf?usp=sharing" 
            target="_blank" 
            rel="noopener noreferrer"
-           class="flex items-center gap-4 bg-white border border-slate-200/80 shadow-sm hover:shadow-md rounded-2xl p-4 transition-all duration-200 max-w-sm w-full text-left group">
+           class="flex flex-col justify-between bg-white border border-slate-200/80 shadow-sm hover:shadow-md rounded-2xl p-6 transition-all duration-200 group">
             
-            <!-- Box Ikon Upload (Biru Muda) -->
-            <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center flex-shrink-0 text-blue-500 group-hover:bg-blue-100 transition-colors">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
-                </svg>
-            </div>
-            
-            <!-- Teks -->
             <div>
-                <h3 class="font-bold text-slate-800 text-sm sm:text-base leading-snug">Upload Perangkat Ajar</h3>
-                <p class="text-xs text-slate-500 mt-0.5">Buka folder Google Drive</p>
+                <!-- Ikon Kotak Biru -->
+                <div class="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center text-blue-500 mb-4 group-hover:bg-blue-100 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+                    </svg>
+                </div>
+                
+                <!-- Judul & Deskripsi -->
+                <h3 class="font-bold text-slate-900 text-lg mb-2">Upload Perangkat Ajar</h3>
+                <p class="text-sm text-slate-500 mb-6">Akses dan unggah berkas perangkat ajar langsung ke folder Google Drive.</p>
+            </div>
+
+            <!-- Tautan Buka Tautan -->
+            <div class="text-amber-500 font-semibold text-sm flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                Buka Tautan &rarr;
             </div>
         </a>
     </div>
